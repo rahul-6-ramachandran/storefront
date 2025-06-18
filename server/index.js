@@ -16,6 +16,8 @@ app.get('/', (req,res)=>{
     res.json({message : "Backend Connected"})
 })
 
+
+// server config
 app.listen(PORT,()=>{
     console.log("Server Running Successfully")
 })
