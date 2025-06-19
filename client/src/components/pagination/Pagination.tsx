@@ -13,6 +13,9 @@ export default function Pagination({
 }: PaginationProps) {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
+  console.log(currentPage,"currentPage")
+  console.log(totalPages,"total")
+
   return (
     <div className="flex justify-center mt-4 space-x-2">
       <button

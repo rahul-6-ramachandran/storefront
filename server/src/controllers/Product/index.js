@@ -1,14 +1,27 @@
 import Product from "../../models/Product/ProductModel.js"
 
 export const getAllProducts = async(req,res)=>{
-    const {page = 1, limit=0} = req.params
+    const page = parseInt(req.query.page) || 1
+  const limit = parseInt(req.query.limit) || 3
+
+  const skip = (page - 1) * limit;
+
+  const items = await Product.find().skip(skip).limit(limit); 
+  const total = await Product.countDocuments();
+
+  
+  res.json({
+    items,
+    total,  
+    page,
+    limit,
+  });
 
 }
 
 
 export const createProduct = async(req,res)=>{
         const {body} = req
-        console.log(body)
         const newProduct = await Product.create(body)
 
         if(newProduct){
@@ -22,7 +35,8 @@ export const getSingleProduct = async(req,res)=>{
     const product = await Product.find({_id : id})
 
 
-
-    return res.status(500).json({message : "Product Added Successfully"})
+    if(product){
+        return res.status(500).json({productDetails : product})
+    }
 }
 
