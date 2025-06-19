@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getSingleProduct } from "../../actions/Product/ProductActions";
-import type { Product } from "../../types.common";
+import { getSingleProductData } from "../../actions/Product/ProductActions";
+import type { Products } from "../../types.common";
 
 export default function ProductDetails() {
   const { id } = useParams();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<Products | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,8 +17,10 @@ export default function ProductDetails() {
   const fetchProduct = async (productId: string) => {
     try {
       setLoading(true);
-      const res = await getSingleProduct(productId);
-      setProduct(res);
+      getSingleProductData(productId).then((res)=>{
+        console.log(res)
+        setProduct(res?.productDetails);  
+      })
     } catch (error) {
       console.error("Failed to load product", error);
     } finally {

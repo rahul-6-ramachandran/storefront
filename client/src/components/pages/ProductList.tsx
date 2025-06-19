@@ -72,7 +72,7 @@ export default function ProductList (){
               </div>
   
               {/* Centered Pagination */}
-              <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-40">
+              <div className="fixed bottom-5 left-1/2 transform  -translate-x-1/2 z-40">
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}
@@ -80,10 +80,7 @@ export default function ProductList (){
                 />
               </div>
   
-              {/* Floating Cart */}
-              <div className="fixed bottom-10 right-10 z-50">
-                <Cart />
-              </div>
+             
             </>
           )}
         </div>

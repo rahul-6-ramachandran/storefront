@@ -12,13 +12,13 @@ export const getAllProducts = async(params : ProductQuery)=>{
 }
 
 
-export const getSingleProductData = async(params : ProductQuery)=>{
+export const getSingleProductData = async(id : string)=>{
     try {
-        const response = await Axios.get('api/product/:id',{params})
+        const response = await Axios.get(`api/product/${id}`)
         return response.data
     } catch (error: any) {
-        const err = new Error(error?.response?.data?.message || 'Error fetching Product list');
-        console.error('Error fetching Product list:', err);
+        const err = new Error(error?.response?.data?.message || 'Error fetching Product Data');
+        console.error('Error fetching Product Data:', err);
     }
 }
 
