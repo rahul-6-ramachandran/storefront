@@ -5,3 +5,9 @@ export type Products = {
     images : string[],
     price : number
 }
+
+export type ProductQuery = {
+    page : string,
+    limit : string
+
+}

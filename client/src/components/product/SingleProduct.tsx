@@ -1,6 +1,7 @@
 import { Link } from "react-router";
+import type { Products } from "../../types.common";
 
-export default function Product (){
+export default function SingleProduct ({product}:{ product: Products }){
     return (
         <>
         
