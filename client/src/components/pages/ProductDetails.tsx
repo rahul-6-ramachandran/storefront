@@ -21,10 +21,10 @@ export default function ProductDetails() {
   const fetchProduct = async (productId: string) => {
     try {
       setLoading(true);
-      getSingleProductData(productId).then((res)=>{
-        console.log(res)
-        setProduct(res?.productDetails);  
-      })
+      getSingleProductData(productId).then((res:any) => {
+        console.log(res);
+        setProduct(res?.productDetails);
+      });
     } catch (error) {
       console.error("Failed to load product", error);
     } finally {
@@ -45,25 +45,25 @@ export default function ProductDetails() {
       <div className="text-center py-20 text-gray-600">Product not found</div>
     );
   }
-  const increment = () => setQuantity(prev => prev + 1);
-  const decrement = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+  const increment = () => setQuantity((prev) => prev + 1);
+  const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
-  const addToCart = (id : string) =>{
-    setLoading(true)
+  const addToCart = (id: string) => {
+    setLoading(true);
     const payload = {
-      productId : id,
-      quantity : quantity
-    }
-    addNewProductToCart(payload).then((res)=>{
-      alert("Product Added to Cart Succesfully")
+      productId: id,
+      quantity: quantity,
+    };
+    addNewProductToCart(payload).then(() => {
+      alert("Product Added to Cart Succesfully");
       fetchCartCount();
       setLoading(false);
-    })
-  }
+    });
+  };
   return (
     <>
       {loading ? (
-          <div className="justify-center h-[80vh] items-center flex p-10">
+        <div className="justify-center h-[80vh] items-center flex p-10">
           <div role="status">
             <svg
               aria-hidden="true"
@@ -88,9 +88,13 @@ export default function ProductDetails() {
         <div className="w-full mx-auto p-6 md:flex md:gap-6">
           <ProductImages images={product.images} />
           <div className="mt-4 md:mt-0 md:w-1/2 h-full items-start">
-            <h2 className="text-3xl font-bold mb-2 text-gray-800">{product.name}</h2>
-            <p className="text-2xl font-semibold text-blue-600 mb-6">₹ {product.price}</p>
-  
+            <h2 className="text-3xl font-bold mb-2 text-gray-800">
+              {product.name}
+            </h2>
+            <p className="text-2xl font-semibold text-blue-600 mb-6">
+              ₹ {product.price}
+            </p>
+
             <div className="flex mb-4 max-w-1/5 justify-start items-start">
               <button
                 onClick={decrement}
@@ -98,7 +102,9 @@ export default function ProductDetails() {
               >
                 –
               </button>
-              <span className="px-4 py-1 border-t border-b text-lg">{quantity}</span>
+              <span className="px-4 py-1 border-t border-b text-lg">
+                {quantity}
+              </span>
               <button
                 onClick={increment}
                 className="px-3 py-1 text-lg bg-gray-200 hover:bg-gray-300 rounded-r"
@@ -106,25 +112,29 @@ export default function ProductDetails() {
                 +
               </button>
             </div>
-  
+
             <button
               onClick={() => addToCart(product?._id)}
               className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
             >
               Add to Cart
             </button>
-  
+
             <div className="py-4">
               <h5 className="text-lg font-medium">Description</h5>
-              <p className="text-gray-600 dark:text-gray-800 mb-4">{product.description}</p>
+              <p className="text-gray-600 dark:text-gray-800 mb-4">
+                {product.description}
+              </p>
             </div>
-  
+
             <div className="py-4">
               <h5 className="text-lg font-medium">Specification</h5>
               <p className="text-gray-600 dark:text-gray-800 mb-2">Brand:</p>
               <p className="text-gray-600 dark:text-gray-800 mb-2">Material:</p>
               <p className="text-gray-600 dark:text-gray-800 mb-2">Weight:</p>
-              <p className="text-gray-600 dark:text-gray-800 mb-2">Model Number:</p>
+              <p className="text-gray-600 dark:text-gray-800 mb-2">
+                Model Number:
+              </p>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-export default function ProductImages({ images = [] } : {images : string[]}) {
+export default function ProductImages({ images = [] }: { images: string[] }) {
   const [selectedImage, setSelectedImage] = useState(images[0]);
 
   return (
@@ -23,7 +23,7 @@ export default function ProductImages({ images = [] } : {images : string[]}) {
             alt={`Thumbnail ${index + 1}`}
             onClick={() => setSelectedImage(img)}
             className={`h-24 w-full object-cover cursor-pointer rounded border-2 ${
-              selectedImage === img ? 'border-blue-600' : 'border-transparent'
+              selectedImage === img ? "border-blue-600" : "border-transparent"
             }`}
           />
         ))}
