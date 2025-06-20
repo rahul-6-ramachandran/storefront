@@ -20,7 +20,7 @@ function App() {
     </HomeLayout>}
   />
 
-<Route path="/product/:id" element={<ProductDetails />} />
+<Route path="/product/:id" element={<HomeLayout><ProductDetails /></HomeLayout>} />
 </Routes>
 
 </Router>

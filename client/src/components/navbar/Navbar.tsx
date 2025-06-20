@@ -15,8 +15,8 @@ export default function Navbar({ cartCount = 0 }) {
 
         {/* Floating Cart */}
         <div className="right-10 z-50">
-                <Cart/>
-              </div>
+                <Cart cartCount={cartCount}/>
+              </div> 
       </div>
     </nav>
   );

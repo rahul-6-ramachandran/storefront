@@ -11,3 +11,8 @@ export type ProductQuery = {
     limit : string
 
 }
+
+export type CreateCart = {
+    productId : string
+    quantity : number
+}

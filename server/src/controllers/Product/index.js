@@ -4,10 +4,18 @@ import Product from "../../models/Product/ProductModel.js"
 export const getAllProducts = async(req,res)=>{
     const page = parseInt(req.query.page) || 1
   const limit = parseInt(req.query.limit) || 3
+  const {sort} = req.query
 
   const skip = (page - 1) * limit;
 
-  const items = await Product.find().skip(skip).limit(limit); 
+  let sortOption = {};
+
+  if (sort === 'price_asc') sortOption.price = 1;
+  else if (sort === 'price_desc') sortOption.price = -1;
+  else if (sort === 'name_asc') sortOption.name = 1;
+  else if (sort === 'name_desc') sortOption.name = -1;
+
+  const items = await Product.find().sort(sortOption).skip(skip).limit(limit); 
   const total = await Product.countDocuments();
 
   

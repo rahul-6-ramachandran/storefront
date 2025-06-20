@@ -1,4 +1,4 @@
-export default function Cart (){
+export default function Cart ({cartCount = 0}){
     return (<>
     <div className="relative inline-block fixed md:bottom-0 flex  rounded bg-blue-600 rounded-full p-3 ">
 
@@ -15,7 +15,7 @@ export default function Cart (){
 
         
             <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
-                3
+                {cartCount}
             </span>
             </div>
 

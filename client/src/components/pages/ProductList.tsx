@@ -11,20 +11,22 @@ export default function ProductList (){
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [loading,setLoading] = useState<boolean>(false)
+    const [sortBy, setSortBy] = useState<string>("");
     const productsPerPage = 3;
   
     useEffect(() => {
      
   
       fetchProducts();
-    }, [currentPage]);
+    }, [currentPage,sortBy]);
 
     const fetchProducts = async () => {
         try {
             setLoading(true)
             const params = {
                 page : currentPage.toString(),
-                limit : productsPerPage.toString()
+                limit : productsPerPage.toString(),
+                sort: sortBy,
             }
             getAllProducts(params).then((res)=>{
                 console.log(res)
@@ -39,7 +41,7 @@ export default function ProductList (){
       };
     
     return( <>
-        <div>
+        <div className="pt-3 md:pt-10">
           {loading ? (
             <div className="justify-center h-[80vh] items-center flex p-10">
               <div role="status">
@@ -64,12 +66,33 @@ export default function ProductList (){
             </div>
           ) : (
             <>
+
+<div className="w-full flex  bg-white sticky top-20 justify-center py-0 px-10">
+          <select
+            value={sortBy}
+            onChange={(e) => {
+              setSortBy(e.target.value);
+              setCurrentPage(1);
+            }}
+            className="border  border-gray-300 rounded-md p-2 text-sm"
+          >
+            <option value="">Sort by</option>
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
+            <option value="name_asc">Name: A-Z</option>
+            <option value="name_desc">Name: Z-A</option>
+          </select>
+        </div>
+
               {/* Product Grid */}
+             
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10 pb-20 px-10 my-3">
+                
                 {products?.map((product) => (
                   <SingleProduct key={product?._id} product={product} />
                 ))}
               </div>
+             
   
               {/* Centered Pagination */}
               <div className="fixed bottom-5 left-1/2 transform  -translate-x-1/2 z-40">

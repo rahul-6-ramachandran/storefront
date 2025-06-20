@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { configDotenv } from 'dotenv'
-import { productRouter } from './src/routes/index.js'
+import { cartRouter, productRouter } from './src/routes/index.js'
 import { handleError } from './src/middlewares/errorHandling.js'
 import { connectDB } from './src/config/database/connection.js'
 
@@ -26,7 +26,7 @@ app.get('/', (req,res)=>{
 })
 
 app.use('/api/product', productRouter)
-// app.use('/api/cart',cartRouter)
+app.use('/api/cart',cartRouter)
 
 app.use(handleError);
 
