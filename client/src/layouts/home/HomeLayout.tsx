@@ -26,7 +26,7 @@ export default function HomeLayout({
         <h1 className="my-3 text-xl w-full bg-white   text-gray-400 font-medium text-start    px-4 py-3">
           Products
         </h1>
-        <div className=" w-full bg-white h-screen rounded-lg shadow-md flex flex-col">
+        <div className=" w-full bg-white md:h-screen rounded-lg shadow-md flex flex-col">
           <CartContext.Provider value={{ fetchCartCount }}>
             {children}
           </CartContext.Provider>

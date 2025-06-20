@@ -22,6 +22,12 @@ export default function SingleProduct({ product }: { product: Products }) {
             </h6>
           </div>
 
+          <div className="md:py-1 text-center">
+            <h6 className="mb-2 text-2xl font-medium tracking-tight text-gray-700 dark:text-gray-300">
+             $ {product?.price}
+            </h6>
+          </div>
+
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 md:py-2">
             {product?.description}
           </p>
